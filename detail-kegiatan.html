@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kegiatan Detail</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html" class="navbar-left">
+          <img src="images/logo.png" alt="Logo Universitas Patompo" width="120">
+        </a>
+        <div class="navbar-menu">
+          <a href="index.html">Beranda</a>
+          <a href="fasilitas.html">Fasilitas</a>
+          <a href="Tentangpmb.html">Tentang PMB</a>
+          <a href="kontak.html">Kontak Kami</a>
+          <a href="lokasi.html">Lokasi Kampus</a>
+        </div>
+        <div class="navbar-right">
+          <input type="text" class="search-input" placeholder="Cari..." />
+          <div class="navbar-login">
+            <button class="login-icon" onclick="toggleLoginForm()">
+              <img src="images/admin.png" class="admin-icon">
+            </button>
+            <div class="login-dropdown" id="loginForm">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <main class="detail-container">
+        <h1 id="detailJudul"></h1>
+        <small id="detailTanggal"></small>
+        <img id="detailFoto" src="" alt="">
+        <div id="detailIsi"></div>
+      </main>
+      
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+  <script>
+      const sb = supabase.createClient(
+    'https://pobjjibuexslrzvfshei.supabase.co', 
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvYmpqaWJ1ZXhzbHJ6dmZzaGVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3MzkxNTcsImV4cCI6MjA2ODMxNTE1N30.rJTGx53rMRC-BQ-ks44eH6J20-V_HErl2S7uIxnMaDo'
+  );
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (id) {
+      loadDetailKegiatan(id);
+    } else {
+      document.body.textContent = "Kegiatan tidak ditemukan.";
+    }
+  </script>
+</body>
+</html>

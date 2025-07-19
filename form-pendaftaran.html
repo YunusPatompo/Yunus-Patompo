@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Form PMB Rapi</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+.form-container {
+  background: #fff;
+  max-width: 900px;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 30px;
+}
+h2 { text-align: center; color: #b43a37; margin-bottom: 20px; }
+.section { margin-bottom: 25px; }
+.section h3 {
+  color: #b43a37; margin-bottom: 15px;
+  border-bottom: 2px solid #b43a37;
+  padding-bottom: 5px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.row label {
+  flex: 0 0 180px;
+  font-weight: 600;
+}
+.row input, .row select {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.two-cols .row {
+  margin-bottom: 12px;
+}
+.two-cols > div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.two-cols > div + div { margin-left: 15px; }
+.section {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.prodi-checkboxes {
+  display: flex;
+  gap: 20px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.prodi-checkboxes label {
+  padding: 8px 12px;
+  background-color: #f2f2f2;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+button[type="submit"] {
+  width: 100%;
+  background-color: #b43a37;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button[type="submit"]:hover {
+  background-color: #a32a2a;
+}
+.bukti {
+  background: #eef;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+.bukti h3 {
+  color: #555;
+  margin-bottom: 15px;
+}
+.bukti p {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="index.html" class="navbar-left">
+      <img src="images/logo.png" alt="Logo Universitas Patompo" width="120">
+    </a>
+    <div class="navbar-menu">
+      <a href="index.html">Beranda</a>
+      <a href="fasilitas.html">Fasilitas</a>
+      <a href="Tentangpmb.html">Tentang PMB</a>
+      <a href="kontak.html">Kontak Kami</a>
+      <a href="lokasi.html">Lokasi Kampus</a>
+    </div>
+    <div class="navbar-right">
+      <input type="text" class="search-input" placeholder="Cari..." />
+      <div class="navbar-login">
+        <button class="login-icon" onclick="toggleLoginForm()">
+          <img src="images/admin.png" class="admin-icon">
+        </button>
+        <div class="login-dropdown" id="loginForm">
+          <form action="admin-dashboard.html" method="POST">
+            <label for="username">Nama:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <h2>Pendaftaran Mahasiswa Baru</h2>
+
+    <form id="formPMB" onsubmit="isiBukti(); return false;">
+      <!-- Section 1 -->
+      <div class="section"><h3>Identitas Referal</h3>
+        <div class="row">
+          <label>Nama Dosen:</label><input type="text" id="namaDosen">
+        </div>
+        <div class="row">
+          <label>Nama Referal:</label><input type="text" id="namaRef">
+        </div>
+        <div class="row">
+          <label>WA Referal:</label><input type="tel" id="waRef">
+        </div>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="section">
+        <h3>Fasilitas & Program Studi</h3>
+      
+        <div class="fakultas-single">
+          <strong>Fakultas Sains dan Teknologi:</strong>
+          <div></div>
+          <div class="prodi-checkboxes">
+            <label><input type="checkbox" name="prodi" value="Teknik Elektro"> Teknik Elektro</label>
+            <label><input type="checkbox" name="prodi" value="Teknik Sipil"> Teknik Sipil</label>
+            <label><input type="checkbox" name="prodi" value="Statistika"> Statistika</label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Section 3 -->
+      <div class="section"><h3>Data Pribadi</h3>
+        <div class="row"><label>Nama Lengkap:</label><input type="text" id="namaMaba" required></div>
+        <div class="row two-cols">
+          <div><label>Jenis Kelamin:</label><select id="jk" required><option value="">--Pilih--</option><option>Laki-laki</option><option>Perempuan</option></select></div>
+          <div><label>Agama:</label><select id="agama" required><option value="">--Pilih--</option><option>Islam</option><option>Kristen</option><option>Katolik</option><option>Hindu</option><option>Budha</option><option>Lainnya</option></select></div>
+        </div>
+        <div class="row"><label>Tempat / Tgl Lahir:</label><input type="text" id="tempatLahir"></div>
+        <div class="row two-cols">
+          <div><label>NIK:</label><input type="text" id="nik"></div>
+          <div><label>HP:</label><input type="tel" id="hpMaba"></div>
+        </div>
+        <div class="row"><label>Alamat:</label><input type="text" id="alamat"></div>
+        <div class="row two-cols">
+          <div><label>RT/RW:</label><input type="text" id="rtrw"></div>
+          <div><label>Kelurahan:</label><input type="text" id="kelurahan"></div>
+        </div>
+        <div class="row two-cols">
+          <div><label>Kecamatan:</label><input type="text" id="kecamatan"></div>
+          <div><label>Kabupaten:</label><input type="text" id="kabupaten"></div>
+        </div>
+        <div class="row"><label>Asal Sekolah:</label><input type="text" id="asalSekolah"></div>
+      </div>
+
+      <!-- Section 4: Orang Tua -->
+      <div class="section"><h3>Data Orang Tua / Wali</h3>
+        <div class="row two-cols">
+          <div><label>Nama Ibu:</label><input type="text" id="namaIbu"></div>
+          <div><label>Nama Ayah:</label><input type="text" id="namaBapak"></div>
+        </div>
+        <div class="row two-cols">
+          <div><label>HP Ibu:</label><input type="tel" id="hpIbu"></div>
+          <div><label>HP Ayah:</label><input type="tel" id="hpBapak"></div>
+        </div>
+        <div class="row"><label>Nama Wali:</label><input type="text" id="namaWali"></div>
+        <div class="row"><label>HP Wali:</label><input type="tel" id="hpWali"></div>
+        <div class="row"><label>Alamat Wali:</label><input type="text" id="alamatWali"></div>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const sb = supabase.createClient(
+    'https://pobjjibuexslrzvfshei.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvYmpqaWJ1ZXhzbHJ6dmZzaGVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3MzkxNTcsImV4cCI6MjA2ODMxNTE1N30.rJTGx53rMRC-BQ-ks44eH6J20-V_HErl2S7uIxnMaDo'
+  );
+</script>
+  <script>
+  document.querySelectorAll('.prodi-checkboxes input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', function () {
+    if (this.checked) {
+      document.querySelectorAll('.prodi-checkboxes input[type="checkbox"]').forEach(other => {
+        if (other !== this) other.checked = false;
+      });
+      }
+    });
+  });
+async function submitFormToSupabase(data) {
+  const { error } = await sb
+    .from('pendaftar')
+    .insert([data]);
+
+  if (error) {
+    alert(' Gagal kirim data: ' + error.message);
+    console.error('Insert error:', error);
+    return false;
+  }
+
+  alert(' Data berhasil dikirim!');
+  return true;
+}
+
+async function isiBukti() {
+  const fakultas = document.querySelector('.prodi-checkboxes input:checked')?.value || '';
+
+  // CEK: Fasilitas & Prodi WAJIB
+  if (!fakultas) {
+    alert("Pilih salah satu Program Studi terlebih dahulu.");
+    return;
+  }
+
+  // CEK: Data Pribadi WAJIB semua
+  const wajibPribadi = [
+    'namaMaba', 'jk', 'agama', 'tempatLahir', 'nik', 'hpMaba', 'alamat',
+    'rtrw', 'kelurahan', 'kecamatan', 'kabupaten', 'asalSekolah'
+  ];
+
+  for (const id of wajibPribadi) {
+    if (!document.getElementById(id).value.trim()) {
+      alert("Mohon lengkapi semua data pribadi.");
+      return;
+    }
+  }
+
+  // CEK: Minimal Ayah atau Ibu harus terisi
+  const namaIbu = document.getElementById('namaIbu').value.trim();
+  const namaBapak = document.getElementById('namaBapak').value.trim();
+  if (!namaIbu && !namaBapak) {
+    alert("Minimal isi nama Ayah atau Ibu.");
+    return;
+  }
+
+  // SIAP: Kumpulkan semua data
+  const formData = {
+    nama_dosen: document.getElementById('namaDosen').value.trim(),
+    nama_ref: document.getElementById('namaRef').value.trim(),
+    wa_ref: document.getElementById('waRef').value.trim(),
+    fakultas_prodi: fakultas,
+    nama_maba: document.getElementById('namaMaba').value.trim(),
+    jk: document.getElementById('jk').value,
+    agama: document.getElementById('agama').value,
+    ttl: document.getElementById('tempatLahir').value.trim(),
+    nik: document.getElementById('nik').value.trim(),
+    hp_maba: document.getElementById('hpMaba').value.trim(),
+    alamat: document.getElementById('alamat').value.trim(),
+    rtrw: document.getElementById('rtrw').value.trim(),
+    kelurahan: document.getElementById('kelurahan').value.trim(),
+    kecamatan: document.getElementById('kecamatan').value.trim(),
+    kabupaten: document.getElementById('kabupaten').value.trim(),
+    asal_sekolah: document.getElementById('asalSekolah').value.trim(),
+    nama_ibu: namaIbu,
+    nama_ayah: namaBapak,
+    hp_ibu: document.getElementById('hpIbu').value.trim(),
+    hp_ayah: document.getElementById('hpBapak').value.trim(),
+    nama_wali: document.getElementById('namaWali').value.trim(),
+    hp_wali: document.getElementById('hpWali').value.trim(),
+    alamat_wali: document.getElementById('alamatWali').value.trim(),
+  };
+
+  // Submit
+  const ok = await submitFormToSupabase(formData);
+  if (ok) document.getElementById('formPMB').reset();
+}
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  overflow-x: hidden;
+  /* 💥 PENTING: Hapus scroll horizontal */
+}
+
+/* Navbar */
+.navbar {
+  background-color: #b43a37;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.navbar a:hover {
+  color: #ffd700;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 25px;
+  font-size: 16px;
+}
+
+.navbar-left {
+  display: inline-block;
+  padding: 4px 8px;
+}
+
+.navbar-left img {
+  display: block;
+  max-height: 50px;
+  width: auto;
+}
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-label {
+  font-weight: bold;
+  margin-right: 5px;
+  color: white;
+}
+
+.search-input {
+  padding: 6px 12px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #000;
+  transition: all 0.3s ease;
+  width: 160px;
+}
+
+.search-input:focus {
+  background-color: #f9f9f9;
+  color: #000;
+  width: 200px;
+}
+
+.navbar-login {
+  position: relative;
+}
+
+.login-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.admin-icon{
+  width: 25px;
+}
+.login-dropdown {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: 230px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+.login-dropdown input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.login-dropdown button {
+  width: 100%;
+  padding: 8px;
+  background-color: #b43a37;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login-dropdown button:hover {
+  background-color: #a52a2a;
+}
+
+.login-dropdown form,
+.login-dropdown button {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.login-dropdown input {
+  margin-bottom: 8px;
+}
+
+
+
+/* Slider */
+.slider {
+  position: relative;
+  height: 600px;
+  width: 100vw;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.slider img.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Tombol Panah */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  font-size: 40px;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.arrow:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.arrow-left {
+  left: 20px;
+}
+
+.arrow-right {
+  right: 20px;
+}
+
+
+/* Section: Program Studi */
+.program-section {
+  padding: 40px 30px;
+  background-color: white;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease-out;
+}
+
+.program-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.program-section h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.program-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.pengumuman {
+  padding: 40px 30px;
+  background-color: white;
+}
+
+.pengumuman h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.program-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+}
+
+.program-card {
+  position: relative;
+  width: 300px;
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+  overflow: hidden;
+  color: white;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.program-card:hover {
+  transform: translateY(-10px);
+}
+
+/* Label Pojok Atas */
+.program-label {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  background-color: #b43a37;
+  color: white;
+  padding: 8px 14px;
+  font-weight: bold;
+  font-size: 14px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.program-overlay {
+  position: absolute;
+  bottom: 40px;
+  left: -10px;
+  right: 10px;
+  background-color: #b43a37;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.program-overlay:hover {
+  transform: translateX(10px);
+  transition: transform 0.3s ease;
+}
+
+.program-text {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* Panah Kanan */
+.program-arrow {
+  font-size: 26px;
+  font-weight: bold;
+  padding-right: 5px;
+}
+
+.kegiatan-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+}
+
+.kegiatan-card {
+  position: relative;
+  width: 300px;
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+  overflow: hidden;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.kegiatan-card:hover {
+  transform: translateY(-10px);
+}
+
+.kegiatan-label {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  background-color: #b43a37;
+  color: white;
+  padding: 8px 14px;
+  font-weight: bold;
+  font-size: 14px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.kegiatan-overlay {
+  position: absolute;
+  bottom: 40px;
+  left: -10px;
+  right: 10px;
+  background-color: #b43a37;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.kegiatan-overlay:hover {
+  transform: translateX(10px);
+  transition: transform 0.3s ease;
+}
+
+.kegiatan-text {
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: bold;
+}
+
+.kegiatan-arrow {
+  font-size: 24px;
+  font-weight: bold;
+  padding-right: 5px;
+}
+
+
+.detail-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  }
+
+  .detail-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 20px;
+  }
+
+  .detail-isi {
+  margin-top: 20px;
+  line-height: 1.7;
+  color: #444;
+  }
+
+  .detail-container small {
+  color: #777;
+  font-style: italic;
+  }
+/* Profil Dosen */
+
+.dosen-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.dosen-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  gap: 30px;
+  max-width: 1000px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: all 0.5s ease-out;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease-out;
+}
+
+.dosen-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.dosen-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.dosen-photo img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #b43a37;
+}
+
+.dosen-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dosen-info h2 {
+  margin: 0 0 20px;
+  font-size: 26px;
+  color: #b43a37;
+}
+
+.dosen-info p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #444;
+}
+
+.dosen-info span {
+  font-weight: bold;
+  color: #222;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .dosen-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+  .dosen-photo img {
+      width: 180px;
+      height: 180px;
+  }
+  .dosen-info h2 {
+      font-size: 22px;
+  }
+}

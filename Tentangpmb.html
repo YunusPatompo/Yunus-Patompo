@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tentang PMB - Universitas Patompo</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    
+
+    .pengumuman {
+      max-width: 900px;
+      margin: 40px auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+      background-color: #f4f4f4;
+    }
+
+    .pengumuman.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .box-section {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      color: #0056b3;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      color: #007acc;
+      margin-top: 0;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .highlight {
+      background-color: #eef6ff;
+      padding: 10px;
+      border-left: 4px solid #007acc;
+      font-style: italic;
+      margin-top: 10px;
+    }
+
+    .action-buttons {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn-download,
+.btn-register {
+  display: inline-block;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  margin: 0 10px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-download {
+  background-color: #007acc;
+}
+
+.btn-register {
+  background-color: #28a745;
+}
+
+.btn-download:hover {
+  background-color: #005f99;
+}
+
+.btn-register:hover {
+  background-color: #218838;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="/" class="navbar-left">
+      <img src="images/logo.png" alt="Logo Universitas Patompo" width="120">
+    </a>
+    <div class="navbar-menu">
+      <a href="index.html">Beranda</a>
+      <a href="fasilitas.html">Fasilitas</a>
+      <a href="Tentangpmb.html">Tentang PMB</a>
+      <a href="kontak.html">Kontak Kami</a>
+      <a href="lokasi.html">Lokasi Kampus</a>
+    </div>
+    <div class="navbar-right">
+      <input type="text" class="search-input" placeholder="Cari..." />
+      <div class="navbar-login">
+        <button class="login-icon" onclick="toggleLoginForm()">
+          <img src="images/admin.png" class="admin-icon">
+        </button>
+        <div class="login-dropdown" id="loginForm">
+          <form action="admin-dashboard.html" method="POST">
+            <label for="username">Nama:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pengumuman">
+    <h2>TENTANG PENERIMAAN MAHASISWA BARU (PMB)</h2>
+
+    <!-- Waktu Pendaftaran -->
+    <div class="box-section">
+      <h3>WAKTU PENDAFTARAN</h3>
+      <ul>
+        <li><strong>Gelombang I:</strong> 01 Januari - 30 Mei 2025</li>
+        <li><strong>Gelombang II:</strong> 01 Juni - 30 Agustus 2025</li>
+        <li><strong>Gelombang III:</strong> 01 - 30 September 2025</li>
+      </ul>
+    </div>
+
+    <!-- Syarat Pendaftaran -->
+    <div class="box-section">
+      <h3>SYARAT PENDAFTARAN</h3>
+      <ol>
+        <li>Mengisi Formulir Pendaftaran</li>
+        <li>Fotocopy Ijazah/Surat Keterangan Lulus yang dilegalisir (2 lembar)</li>
+        <li>Fotocopy KTP/Kartu Keluarga (1 lembar)</li>
+        <li>Pas Foto Ukuran 3x4 cm (1 Lembar)</li>
+        <li>Melakukan pembayaran biaya pendaftaran:
+          <ul>
+            <li>S1 Teknik Elktro: Rp 250.000,-</li>
+            <li>S1 Teknik Sipil: Rp 250.000,-</li>
+            <li>S1 Statistika: Rp 250.000,-</li>
+          </ul>
+        </li>
+      </ol>
+      <p><strong>Pembayaran formulir pendaftaran dapat dilakukan melalui:</strong></p>
+      <ul>
+        <li>pembayaran tunai melalui Customer Service PMB</li>
+      </ul>
+      
+    </div>
+
+    <!-- Biaya Pendidikan -->
+    <div class="box-section">
+      <h3>BIAYA PENDIDIKAN</h3>
+
+      <h4>PROGRAM SARJANA DAN DIPLOMA</h4>
+      <h5>I. FAKULTAS ILMU KOMPUTER</h5>
+      <table>
+        <thead>
+          <tr>
+            <th>Program Studi</th>
+            <th>Biaya Pembangunan</th>
+            <th>Biaya Semester</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>S1 Teknik Elektro</td>
+            <td>Rp 500.000</td>
+            <td>Rp 1.900.000</td>
+          </tr>
+          <tr>
+            <td>S1 Teknik Sipil</td>
+            <td>Rp 500.000</td>
+            <td>Rp 1.900.000</td>
+          </tr>
+          <tr>
+            <td>S1 Statistika</td>
+            <td>Rp 500.000</td>
+            <td>Rp 1.900.000</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><strong>Pembayaran Biaya Pendidikan:</strong></p>
+      <ul>
+        <li>pembayaran tunai melalui Customer Service PMB</li>
+      </ul>
+    </div>
+    <div class="action-buttons">
+      <a href="assets/brosur.pdf" download class="btn-download">Download Brosur</a>
+      <a href="form-pendaftaran.html" class="btn-register">Daftar Sekarang</a>
+    </div>
+  
+  </div>
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const sb = supabase.createClient(
+    'https://pobjjibuexslrzvfshei.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvYmpqaWJ1ZXhzbHJ6dmZzaGVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3MzkxNTcsImV4cCI6MjA2ODMxNTE1N30.rJTGx53rMRC-BQ-ks44eH6J20-V_HErl2S7uIxnMaDo'
+  );
+</script>
+  <script>
+    window.addEventListener('load', function () {
+      const content = document.querySelector('.pengumuman');
+      if (content) {
+        content.classList.add('visible');
+      }
+    });
+  </script>
+</body>
+</html>
