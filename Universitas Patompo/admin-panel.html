@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+      <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html" class="navbar-left">
+          <img src="images/logo.png" alt="Logo Universitas Patompo" width="120">
+        </a>
+        <div class="navbar-menu">
+          <a href="index.html">Beranda</a>
+          <a href="fasilitas.html">Fasilitas</a>
+          <a href="Tentangpmb.html">Tentang PMB</a>
+          <a href="kontak.html">Kontak Kami</a>
+          <a href="lokasi.html">Lokasi Kampus</a>
+        </div>
+        <div class="navbar-right">
+          <input type="text" class="search-input" placeholder="Cari..." />
+          <div class="navbar-login">
+            <button class="login-icon" onclick="toggleLoginForm()">
+              <img src="images/admin.png" class="admin-icon">
+            </button>
+            <div class="login-dropdown" id="loginForm">
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <nav class="admin-navbar">
+        <ul>
+            <li><a href="#" onclick="showSection('pendaftar')">Form Masuk</a></li>
+            <li><a href="#" onclick="showSection('kegiatan')">Kegiatan</a></li>
+            <li><a href="#" onclick="showSection('dosen')">Dosen</a></li>
+        </ul>
+    </nav>
+      
+      
+    <main id="pendaftar" class="admin-section">
+            <h2>Data Formulir Masuk</h2>
+            <div class="download-container">
+              <button id="btnDownload" class="btn-download">📥 Download Excel</button>
+            </div>
+            <div class="table-container">
+              <table id="tablePendaftar">
+                <thead>
+                  <tr>
+                    <th>Nama Lengkap</th>
+                    <th>Prodi</th>
+                    <th>JK</th>
+                    <th>TTL</th>
+                    <th>NIK</th>
+                    <th>HP</th>
+                    <th>Alamat</th>
+                    <th>Orang Tua / Wali</th>
+                    <th>Asal Sekolah</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- data akan dimasukkan lewat JavaScript -->
+                </tbody>
+              </table>
+            </div>
+    </main>
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+          <h3>Edit Data Pendaftar</h3>
+          <form id="editForm" onsubmit="submitEdit(event)">
+            <input type="hidden" id="editId">
+            <label>Nama Lengkap:</label>
+            <input type="text" id="editNamaMaba" required>
+      
+            <label>Prodi:</label>
+            <input type="text" id="editProdi" required>
+      
+            <label>No HP:</label>
+            <input type="text" id="editHpMaba" required>
+      
+            <label>Alamat:</label>
+            <textarea id="editAlamat" required></textarea>
+      
+            <div class="modal-buttons">
+              <button type="submit">Simpan</button>
+              <button type="button" onclick="closeEditModal()">Batal</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <main id="kegiatan" class="admin-section" style="display: none;">
+        <h2>Kelola Kegiatan</h2>
+        <button id="btnAddKegiatan" class="btn-tambah">Tambah Kegiatan</button>
+        <div id="kegiatanList" class="kegiatan-list-admin"></div>
+      </main>
+
+    <div id="kegiatanModal" class="modal">
+      <div class="modal-content">
+        <h3 id="kegiatanModalTitle">Form Kegiatan</h3>
+        <form onsubmit="submitKegiatanForm(event)">
+          <input type="hidden" id="kegiatanId">
+          <label>Judul:</label>
+          <input type="text" id="kegiatanJudul" required>
+          <label>Tanggal:</label>
+          <input type="date" id="kegiatanTanggal" required>
+          <label>Foto:</label>
+          <input type="file" id="kegiatanFotoFile" accept="image/*">
+          <label>Isi:</label>
+          <textarea id="kegiatanIsi" rows="6" required></textarea>
+          <div class="modal-buttons">
+            <button type="submit">Simpan</button>
+            <button type="button" onclick="closeKegiatanModal()">Batal</button>
+          </div>
+        </form>
+      </div>
+    </div>
+      
+    <main id="dosen" class="admin-section" style="display:none">
+            <h2>Daftar Dosen</h2>
+            <button class="btn-tambah" onclick="showAddDosen()">Tambah Dosen</button>
+            <div id="dosenList" class="dosen-list-admin">
+          </div>
+    </main>
+
+    <div id="dosenModal" class="modal">
+        <div class="modal-content">
+          <h3 id="modalTitle">Form Dosen</h3>
+          <form onsubmit="submitDosenForm(event)">
+            <input type="hidden" id="dosenId">
+      
+            <label>Nama:</label>
+            <input type="text" id="dosenNama" required>
+      
+            <label>Gelar & Jabatan:</label>
+            <input type="text" id="dosenJabatan" required>
+      
+            <label>Prodi / Fakultas:</label>
+            <input type="text" id="dosenProdi" required>
+      
+            <label>Foto:</label>
+            <input type="file" id="dosenFotoFile" accept="image/*" required>
+      
+            <div class="modal-buttons">
+              <button type="submit">Simpan</button>
+              <button type="button" onclick="closeDosenModal()">Batal</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const sb = supabase.createClient('https://pobjjibuexslrzvfshei.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBvYmpqaWJ1ZXhzbHJ6dmZzaGVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3MzkxNTcsImV4cCI6MjA2ODMxNTE1N30.rJTGx53rMRC-BQ-ks44eH6J20-V_HErl2S7uIxnMaDo');
+    </script>
+  <script src="admin.js"></script>
+</body>
+</html>
